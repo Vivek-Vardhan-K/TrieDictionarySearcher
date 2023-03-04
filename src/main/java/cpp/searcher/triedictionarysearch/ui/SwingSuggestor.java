@@ -68,7 +68,7 @@ public class SwingSuggestor extends JPanel{
             }
         });
         JPanel p = new JPanel(new BorderLayout());
-        p.setBorder(BorderFactory.createTitledBorder("AutoSuggestion Box"));
+        p.setBorder(BorderFactory.createTitledBorder("Trie Suggestion Box"));
         p.add(jBox, BorderLayout.NORTH);
         add(p);
         setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
@@ -83,7 +83,7 @@ public class SwingSuggestor extends JPanel{
     private DefaultComboBoxModel getSuggestedModel(String text) {
         DefaultComboBoxModel m = new DefaultComboBoxModel();
         List<String> suggestions=finderService.startsWith(text,root);
-        m.addAll(suggestions);
+        suggestions.forEach(str->m.addElement(str));
         return m;
     }
 }
