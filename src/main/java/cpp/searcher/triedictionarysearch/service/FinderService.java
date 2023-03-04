@@ -10,9 +10,9 @@ import java.util.Map;
 @Service
 public class FinderService {
 //    private String globs;
-    private List<String> global=new ArrayList<>();
+    private static List<String> global=new ArrayList<>();
 
-    private TrieNode findFollowUpNode(String s,TrieNode root){
+    private static TrieNode findFollowUpNode(String s,TrieNode root){
         TrieNode temp=root;
         for(int i=0;i<s.length();i++){
             if(temp.mp.containsKey(s.charAt(i))){
@@ -23,7 +23,7 @@ public class FinderService {
         return temp;
     }
 
-    private void recursionPush(TrieNode root,StringBuilder s){ //DFS
+    private static void recursionPush(TrieNode root,StringBuilder s){ //DFS
         TrieNode temp=root;
         if(root.endOfWord.equals(Boolean.TRUE)){
             global.add(s.toString());
@@ -35,7 +35,8 @@ public class FinderService {
         }
     }
 
-    public List<String> startsWith(String s,TrieNode root){
+    public static List<String> startsWith(String s,TrieNode root){
+        global=new ArrayList<>();
         TrieNode temp=findFollowUpNode(s,root);
         StringBuilder sb=new StringBuilder(s);
         recursionPush(temp,sb);
